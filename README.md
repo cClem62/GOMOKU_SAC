@@ -1,2 +1,2 @@
 # GOMOKU_SAC-
-Notre projet de GOMOKU
+Notre projet de GOMOKU.

@@ -10,5 +10,5 @@ package gomoku_sac.gui;
  * @author Antonio
  */
 public class InterfacePlateau {
-    
+    //fjfjfjhfdj;
 }

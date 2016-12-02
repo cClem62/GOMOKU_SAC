@@ -1,0 +1,4 @@
+InterfaceStart
+InterfaceGomoku
+InterfaceVictoire
+InterfaceScores

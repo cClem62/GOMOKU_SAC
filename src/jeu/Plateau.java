@@ -14,20 +14,61 @@ public class Plateau {
 
 
 	private Pion[][] tableau;
+        private boolean premier_pion = true;
 	
 	public Plateau (int taille){
             tableau = new Pion [taille][taille];
-            
 	}
+        
+        public boolean placerPion(int x, int y, String couleur){
+            boolean possible = false;
+            // Si c'est le premier pion, le pose sans condition
+            if (premier_pion == true){
+                if (couleur == "BLANC"){
+                    tableau[x][y] = new Pion(x,y, "BLANC");
+                    System.out.println("Création d'un pion blanc");
+                    possible = true;
+                }
+                if (couleur == "NOIR"){
+                    tableau[x][y] = new Pion(x,y, "NOIR");
+                    System.out.println("Création d'un pion noir");
+                    possible = true;
+                }
+                premier_pion = false;
+               
+            }
+            // Sinon véirfie que la case ne soit pas occupé et qu'il y a un bien un pion mitoyen  à celui que l'ont veut poser
+            else{
+                if (placement_possible(x,y)){
+                    if (couleur == "BLANC"){
+                        tableau[x][y] = new Pion(x,y, "BLANC");
+                        System.out.println("Création d'un pion blanc");
+                        possible = true;
+                    }
+                    if (couleur == "NOIR"){
+                        tableau[x][y] = new Pion(x,y, "NOIR");
+                        System.out.println("Création d'un pion noir");
+                        possible = true;
+                    }
+                }
+                else{
+                    System.out.println("Placement impossible");
+                }
+            }
+            
+            return possible;
+        }
         
         // Renvoie TRUE s'il est possible de placer un pion.
         public boolean placement_possible(int x, int y){
             boolean possible = true;
             if (!case_libre(x, y)){
                 possible = false;
+                System.out.println("La case n'est pas libre");
             }
             if (!case_voisine_occupee(x, y)){
                 possible = false;
+                System.out.println("Vous devez placer votre pion sur une case voisine d'un autre pion");
             }
             return possible;
         }
@@ -170,5 +211,29 @@ public class Plateau {
                 possible = false;
             }
             return possible;
+        }
+        
+        public String toString(){
+            System.out.print("  ");
+            for(int i = 0; i < tableau.length; i++){
+                System.out.print(i+" ");
+            }
+            System.out.println("");
+            System.out.println("");
+            for(int i = 0; i < tableau.length; i++){
+                System.out.print(i+" ");
+                for(int j = 0; j < tableau[i].length; j++){
+                    if (case_libre(j,i)){
+                        System.out.print("0 ");
+                    }
+                    else{
+                        
+                        System.out.print(tableau[j][i].getLettre()+ " ");
+                    }
+                }
+                System.out.println("");
+                System.out.println("");
+            }
+            return "";
         }
 }

@@ -35,6 +35,5 @@ public class Joueur
 	public int getPionsRestant()
 	{
 		return pions_restant;
-	}
-        
+	}       
 }

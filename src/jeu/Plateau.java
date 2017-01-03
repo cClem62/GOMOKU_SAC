@@ -285,8 +285,8 @@ public class Plateau {
             int compte = 0;
             
             // Vérification horizontale
-            for (int i = 0; i < tableau.length; i++){
-                for(int j = 0; j < tableau[i].length; j++){
+            for (int i = 0; i < GamePlay.getTailleMax()-1; i++){
+                for(int j = 0; j < GamePlay.getTailleMax()-1; j++){
                     if (case_libre(j,i)){
                         compte = 0;
                     }
@@ -304,8 +304,8 @@ public class Plateau {
             }
             
             // Vérification verticale
-            for (int i = 0; i < tableau.length; i++){
-                for(int j = 0; j < tableau[i].length; j++){
+            for (int i = 0; i < GamePlay.getTailleMax()-1; i++){
+                for(int j = 0; j < GamePlay.getTailleMax()-1; j++){
                     if (case_libre(i,j)){
                         compte = 0;
                     }
@@ -322,6 +322,27 @@ public class Plateau {
             }
             
             
+            // Vérification diagonale
+            int decalage =0;
+            for (int i=0; i < GamePlay.getTailleMax()-5; i++){
+                decalage = 0;
+                for (int j = 0; j < GamePlay.getTailleMax()-1; j++){
+                    if (case_libre(i+decalage,j)){
+                        compte = 0;
+                    }
+                    else if (tableau[i+decalage][j].getCouleur().equals(couleur)){
+                        compte = compte +1;
+                    }
+                    else{
+                        compte = 0;
+                    }
+                    if (compte == 5){
+                        victoire = true;
+                    }
+                    //System.out.println("coord : " + i + " " + decalage + " " + j);
+                    //decalage++;
+                }
+            }
             
             return victoire;
         }

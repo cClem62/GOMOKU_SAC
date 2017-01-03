@@ -24,7 +24,7 @@ public class GamePlay {
     private boolean joueur2 = false;
     private Plateau plateau1;
     
-    private int taille_max;
+    private static int taille_max;
     private int nombre_cases;
     
     public GamePlay(Joueur J1, Joueur J2, String couleur1, String couleur2, int taille){
@@ -107,8 +107,7 @@ public class GamePlay {
         }
         return y;
     }
-    
-    public int getTailleMax(){
+    public static int getTailleMax(){
         return taille_max;
     }
 }

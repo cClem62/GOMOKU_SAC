@@ -11,8 +11,7 @@ package jeu;
  * @author sylva
  */
 public class Plateau {
-
-
+    
 	private Pion[][] tableau;
         private boolean premier_pion = true;
 	
@@ -24,12 +23,12 @@ public class Plateau {
             boolean possible = false;
             // Si c'est le premier pion, le pose sans condition
             if (premier_pion == true){
-                if (couleur == "BLANC"){
+                if (couleur.equals("BLANC")){
                     tableau[x][y] = new Pion(x,y, "BLANC");
                     System.out.println("Création d'un pion blanc");
                     possible = true;
                 }
-                if (couleur == "NOIR"){
+                if (couleur.equals("NOIR")){
                     tableau[x][y] = new Pion(x,y, "NOIR");
                     System.out.println("Création d'un pion noir");
                     possible = true;
@@ -40,14 +39,44 @@ public class Plateau {
             // Sinon véirfie que la case ne soit pas occupé et qu'il y a un bien un pion mitoyen  à celui que l'ont veut poser
             else{
                 if (placement_possible(x,y)){
-                    if (couleur == "BLANC"){
+                    if (couleur.equals("BLANC")){
                         tableau[x][y] = new Pion(x,y, "BLANC");
                         System.out.println("Création d'un pion blanc");
                         possible = true;
                     }
-                    if (couleur == "NOIR"){
+                    if (couleur.equals("NOIR")){
                         tableau[x][y] = new Pion(x,y, "NOIR");
                         System.out.println("Création d'un pion noir");
+                        possible = true;
+                    }
+                }
+                else{
+                    System.out.println("Placement impossible");
+                }
+            }
+            
+            return possible;
+        }
+
+        public boolean placerPionPossible(int x, int y, String couleur){
+            boolean possible = false;
+            // Si c'est le premier pion, le pose sans condition
+            if (premier_pion == true){
+                if (couleur.equals("BLANC")){
+                    possible = true;
+                }
+                if (couleur.equals("NOIR")){
+                    possible = true;
+                }
+               
+            }
+            // Sinon véirfie que la case ne soit pas occupé et qu'il y a un bien un pion mitoyen  à celui que l'ont veut poser
+            else{
+                if (placement_possible(x,y)){
+                    if (couleur.equals("BLANC")){
+                        possible = true;
+                    }
+                    if (couleur.equals("NOIR")){
                         possible = true;
                     }
                 }
@@ -76,34 +105,49 @@ public class Plateau {
         // Retourne TRUE si au moins l'une des cases autour (diagonales comprises) est occupée.
         public boolean case_voisine_occupee(int x, int y){
             boolean drap = false;
-            if (verifN(x, y)){
-                drap = true;
+            if (y != 0){
+                if (verifN(x, y)){
+                    drap = true;
+                }
             }
-            if (verifS(x, y)){
-                drap = true;
+            if (y != 6){
+                if (verifS(x, y)){
+                    drap = true;
+                }
             }
-            if (verifE(x, y)){
-                drap = true;
+            if (x != 6){
+                if (verifE(x, y)){
+                    drap = true;
+                }
             }
-            if (verifO(x, y)){
-                drap = true;
+            if (x != 0){
+                if (verifO(x, y)){
+                    drap = true;
+                }
             }
-            if (verifNE(x, y)){
-                drap = true;
+            if (y != 0 & x != 6){
+                if (verifNE(x, y)){
+                    drap = true;
+                }
             }
-            if (verifNO(x, y)){
-                drap = true;
+            if (y != 0 & x != 0){
+                if (verifNO(x, y)){
+                    drap = true;
+                }
             }
-            if (verifSE(x, y)){
-                drap = true;
+            if (y != 6 & x != 6){
+                if (verifSE(x, y)){
+                    drap = true;
+                }
             }
-            if (verifSO(x, y)){
-                drap = true;
+            if (y != 6 & x != 0){
+                if (verifSO(x, y)){
+                    drap = true;
+                }
             }
             return drap;
         }
 
-        
         // Retourne TRUE si la case au Nord est occupée
         public boolean verifN(int x, int y)
         {
@@ -227,7 +271,6 @@ public class Plateau {
                         System.out.print("0 ");
                     }
                     else{
-                        
                         System.out.print(tableau[j][i].getLettre()+ " ");
                     }
                 }
@@ -235,5 +278,51 @@ public class Plateau {
                 System.out.println("");
             }
             return "";
+        }
+        
+        public boolean victoire(String couleur){
+            boolean victoire = false;
+            int compte = 0;
+            
+            // Vérification horizontale
+            for (int i = 0; i < tableau.length; i++){
+                for(int j = 0; j < tableau[i].length; j++){
+                    if (case_libre(j,i)){
+                        compte = 0;
+                    }
+                    else if (tableau[j][i].getCouleur().equals(couleur)){
+                        compte = compte +1;
+                    }
+                    else{
+                        compte = 0;
+                    }
+                    
+                    if (compte == 5){
+                        victoire = true;
+                    }
+                }
+            }
+            
+            // Vérification verticale
+            for (int i = 0; i < tableau.length; i++){
+                for(int j = 0; j < tableau[i].length; j++){
+                    if (case_libre(i,j)){
+                        compte = 0;
+                    }
+                    else if (tableau[i][j].getCouleur().equals(couleur)){
+                        compte = compte +1;
+                    }
+                    else{
+                        compte = 0;
+                    }
+                    if (compte == 5){
+                        victoire = true;
+                    }
+                }
+            }
+            
+            
+            
+            return victoire;
         }
 }

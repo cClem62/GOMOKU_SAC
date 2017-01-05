@@ -322,11 +322,42 @@ public class Plateau {
             }
             
             
-            // Vérification diagonale
-            int decalage =0;
-            for (int i=0; i < GamePlay.getTailleMax()-5; i++){
+            // Vérification diagonale (X vers la droite)
+            int decalage = 0;
+            for (int i=0; i < GamePlay.getTailleMax()-(GamePlay.getPionAAligner()-1); i++){
                 decalage = 0;
-                for (int j = 0; j < GamePlay.getTailleMax()-1; j++){
+                for (int j = i; j < GamePlay.getTailleMax(); j++){
+                    if (case_libre(i+decalage,j-i)){
+                        compte = 0;
+                    }
+                    else if (tableau[i+decalage][j-i].getCouleur().equals(couleur)){
+                        compte = compte +1;
+                    }
+                    else{
+                        compte = 0;
+                    }
+                    if (compte == GamePlay.getPionAAligner()){
+                        victoire = true;
+                    }
+                    //System.out.println("coord : " + i + " " + decalage + " " + j);
+                    decalage++;
+                }
+            }
+            
+            
+            
+            // Vérification diagonale (X vers la gauche)
+            decalage = 0;
+            for (int i = GamePlay.getTailleMax()-1; i > GamePlay.getPionAAligner()-2; i--){
+                decalage = 0;
+                //System.out.println("--------------------------------");
+                //System.out.println("retour à 0");
+                for (int j = 0; j-i <= 0; j++){
+                    //x = i + decalage;
+                    //System.out.println("x = " + x);
+                    //System.out.println("y = " + j);
+                    //System.out.println("coord : i = " + i + " decalage = " + decalage + " j = " + j);
+                    //System.out.println("");
                     if (case_libre(i+decalage,j)){
                         compte = 0;
                     }
@@ -336,13 +367,22 @@ public class Plateau {
                     else{
                         compte = 0;
                     }
-                    if (compte == 5){
+                    if (compte == GamePlay.getPionAAligner()){
                         victoire = true;
                     }
-                    //System.out.println("coord : " + i + " " + decalage + " " + j);
-                    //decalage++;
+                    decalage--;
                 }
             }
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
             
             return victoire;
         }

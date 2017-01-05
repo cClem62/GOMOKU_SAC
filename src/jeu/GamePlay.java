@@ -27,6 +27,8 @@ public class GamePlay {
     private static int taille_max;
     private int nombre_cases;
     
+    private static int pion_align_pour_gagner = 5;
+    
     public GamePlay(Joueur J1, Joueur J2, String couleur1, String couleur2, int taille){
         this.J1 = J1;
         this.J2 = J2;
@@ -109,5 +111,9 @@ public class GamePlay {
     }
     public static int getTailleMax(){
         return taille_max;
+    }
+    
+    public static int getPionAAligner(){
+        return pion_align_pour_gagner;
     }
 }

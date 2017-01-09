@@ -18,9 +18,9 @@ import java.awt.event.ActionListener;
         private JPanel pn1 = new JPanel();
          public void actionPerformed(ActionEvent e) {
         if ((JButton)e.getSource() == btnIA){
-          InterfacePlateau fenetre = new InterfacePlateau();
+          Interface fenetre = new Interface();
         }else if ((JButton)e.getSource() == btnA){
-              InterfacePlateau fenetre = new InterfacePlateau();
+              Interface fenetre = new Interface();
                 }
         this.dispose();
         this.setVisible(false);

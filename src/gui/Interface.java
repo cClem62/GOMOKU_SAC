@@ -5,10 +5,30 @@
  */
 package gui;
 
+import javax.swing.JFrame;
+
 /**
  *
- * @author Clément Cantraine
+ * @author Antonio
+ * interface qui regroupe le plateau Gomoku (plateau + gomoku)
  */
-public class Interface {
+public class Interface 
+{
+    private static final int size = InterfaceGomoku.posDebutQuadrillage + InterfaceGomoku.posFinQuadrillage;
     
+   
+    public static void main(String args[]) 
+    {
+        JFrame f = new JFrame();
+        f.setTitle("Gomoku");
+        
+        InterfaceGomoku gomoku = new InterfaceGomoku();
+        f.add(gomoku);
+        
+        f.setSize(size, size);
+        f.setLocationRelativeTo(null);
+        f.setResizable(false);
+        f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        f.setVisible(true);
+    }
 }

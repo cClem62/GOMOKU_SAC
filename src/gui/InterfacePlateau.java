@@ -19,7 +19,7 @@ public class InterfacePlateau extends JFrame
 
         
         
-           //Le titre de notre JFrame
+        //Le titre de notre JFrame
         this.setTitle("Gomoku");
         //La taille de notre JFrame
         this.setSize(800, 600);

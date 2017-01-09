@@ -321,9 +321,8 @@ public class Plateau {
                 }
             }
             
-            
             // Vérification diagonale (X vers la droite)
-            int decalage = 0;
+            int decalage;
             for (int i=0; i < GamePlay.getTailleMax()-(GamePlay.getPionAAligner()-1); i++){
                 decalage = 0;
                 for (int j = i; j < GamePlay.getTailleMax(); j++){
@@ -344,10 +343,7 @@ public class Plateau {
                 }
             }
             
-            
-            
             // Vérification diagonale (X vers la gauche)
-            decalage = 0;
             for (int i = GamePlay.getTailleMax()-1; i > GamePlay.getPionAAligner()-2; i--){
                 decalage = 0;
                 //System.out.println("--------------------------------");
@@ -374,16 +370,51 @@ public class Plateau {
                 }
             }
             
+            // Vérification diagonale (Y vers la droite)
+            for (int i=1; i < GamePlay.getTailleMax()-(GamePlay.getPionAAligner()-1); i++){
+                decalage = 0;
+                for (int j = i; j < GamePlay.getTailleMax(); j++){
+                    if (case_libre(j-i,i+decalage)){
+                        compte = 0;
+                    }
+                    else if (tableau[j-i][i+decalage].getCouleur().equals(couleur)){
+                        compte = compte +1;
+                    }
+                    else{
+                        compte = 0;
+                    }
+                    if (compte == GamePlay.getPionAAligner()){
+                        victoire = true;
+                    }
+                    decalage++;
+                }
+            }
             
-            
-
-            
-            
-            
-            
-            
-            
-            
+            // Vérification diagonale (Y vers la gauche)
+            for (int j = 0; j < GamePlay.getTailleMax()-(GamePlay.getPionAAligner()-1); j++){
+                decalage = 0;
+                System.out.println("--------------------------------");
+                System.out.println(GamePlay.getTailleMax()-(GamePlay.getPionAAligner()-1));
+                System.out.println("retour à 0");
+                for (int i = GamePlay.getTailleMax()-1; i >= j ; i--){
+                    System.out.println("x = " + (i));
+                    System.out.println("y = " + (j+decalage));
+                    System.out.println("");
+                    if (case_libre(i,j+decalage)){
+                        compte = 0;
+                    }
+                    else if (tableau[i][j+decalage].getCouleur().equals(couleur)){
+                        compte = compte +1;
+                    }
+                    else{
+                        compte = 0;
+                    }
+                    if (compte == GamePlay.getPionAAligner()){
+                        victoire = true;
+                    }
+                    decalage++;
+                }
+            }
             return victoire;
         }
 }

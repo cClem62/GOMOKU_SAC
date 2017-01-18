@@ -3,7 +3,6 @@ package gui;
 import java.util.Scanner;
 import jeu.GamePlay;
 import jeu.Joueur;
-import jeu.Plateau;
 
 public class Main 
 {
@@ -15,7 +14,8 @@ public class Main
     //}
             
     {
-        Scanner sc = new Scanner(System.in);
+        
+       // Scanner sc = new Scanner(System.in);
         //System.out.println("Quel est le pseudo du joueur 1 :");
         //String joueur1 = sc.nextLine();
         //System.out.println("Quel est le pseudo du joueur 2 :");
@@ -25,12 +25,22 @@ public class Main
         
         //Joueur J1 = new Joueur(joueur1, "BLANC");
         //Joueur J2 = new Joueur(joueur2, "NOIR");
-        Joueur J1 = new Joueur("Sylvain", "BLANC");
+       /* Joueur J1 = new Joueur("Sylvain", "BLANC");
         Joueur J2 = new Joueur("Vincent", "NOIR");
         
         GamePlay game1 = new GamePlay(J1, J2, "BLANC", "NOIR", 7);
         game1.start();
         
-        System.out.println("finis");
+        System.out.println("finis");*/
+        
+        //jeu graphique : 
+        //InterfaceAccueil jeu = new InterfaceAccueil();
+        //Interface i = new Interface();
+        //InterfaceUtilisateur u = new InterfaceUtilisateur();
+        //InterfacePlateau t = new InterfacePlateau();
+       
+        //InterfaceMorpion m = new InterfaceMorpion();
+        InterfaceAccueil jeu = new InterfaceAccueil();
+        //InterfaceGomoku j = new InterfaceGomoku();
     }
 }

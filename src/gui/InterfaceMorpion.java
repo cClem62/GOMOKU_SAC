@@ -1,29 +1,32 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package gui;
 
-import static gui.InterfaceGomoku.nb_lignes;
 import javax.swing.JFrame;
 
 /**
  *
  * @author Antonio
- * interface qui regroupe le plateau Gomoku (plateau + gomoku)
  */
-public class Interface extends JFrame
+class InterfaceMorpion extends JFrame
 {
     
-   public Interface()
+   public InterfaceMorpion()
    {
        //JFrame f = new JFrame();
-       this.setTitle("Gomoku");
-        
+       this.setTitle("Morpion");
+       
        InterfaceGomoku gomoku = new InterfaceGomoku();
        this.add(gomoku);
-       int size = gomoku.nb_lignes + InterfaceGomoku.marge;
+       int size = gomoku.fin_marge + InterfaceGomoku.marge;
        this.setSize(size +6, size +28);
        this.setLocationRelativeTo(null);
        this.setResizable(false);
        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-       //gomoku.nb_lignes = 15;
+       //gomoku.nb_lignes = 3;
        this.setVisible(true);     
    }
 }
